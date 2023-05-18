@@ -28,4 +28,29 @@ html, body {
     text-align: center;
     color: 	#003300;
 }
-
+#catalog {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#catalog > h2 {
+    text-align: center;
+    color: 	#003300;
+}
+#card-item {
+    display: flex;
+    border-radius: 5px;
+    border-color: #003300;
+    background-color: #00CC99;
+}
+.pic {
+    width: 25%;
+    height: 25%;
+    border-radius: 5px;
+}
+#card-item > p {
+    white-space: nowrap;
+}
+#card-right {
+    display: block;
+}

@@ -8,44 +8,63 @@ fetch('books.json') //path to the file with json data
         .then(books => {
             for (let i = 0; i < books.length; i+=1) {
                 console.log (books[i]);
-                const text = document.createElement("p");
-                text.innerText = books[i].title;
-                container.appendChild(text);
+                // Создаем карточки
+                const cardItem = document.createElement("div");
+                cardItem.id = "card-item";
+                catalog.appendChild(cardItem);
+                
+                //Добавляем изображние в карточку
+                const pic = document.createElement("img");
+                pic.className = "pic";
+                pic.src = books[i].imageLink;
+                cardItem.appendChild(pic);
+
+                //Добавляем правый блок карточки
+                const cardRight = document.createElement("div");
+                cardRight.id = "card-right";
+                cardItem.appendChild(cardRight);
+
+                //Добавляем автора книги
+                const author = document.createElement("h3");
+                author.innerText = books[i].author;
+                cardRight.appendChild(author);
+
+                // Добавляем название книги 
+                const title = document.createElement("p");
+                title.innerText = books[i].title;
+                cardRight.appendChild(title);
+
+                //Добавляем кнопку
+                const btn = document.createElement("button");
+                btn.className = "btn";
+                cardRight.appendChild(btn);
+
+                //Добавляем название кнопки
+                const btnName = document.createElement("p");
+                btnName.innerText = "add to bag";
+                btnName.className = "btn-name";
+                btn.appendChild(btnName);
+
+                //Добаляем ссылку на модальное окно
+                const link = document.createElement("a");
+                link.href = "#";
+                link.className = "link";
+                cardRight.appendChild(link);
+
+                //Добавляем название ссылки
+                const linkName = document.createElement("p");
+                linkName.innerText = "show more"
+                linkName.className = "link-name";
+                link.appendChild(linkName);
+
+
             }
             console.log(books);
         });
 
 
-
-// Создаем список ul
-/*var list = document.createElement("ul");
-
-// Добавляем элементы li в список
-var item1 = document.createElement("li");
-item1.innerText = "Книга 1";
-list.appendChild(item1);
-
-var item2 = document.createElement("li");
-item2.innerText = "Книга 2";
-list.appendChild(item2);
-
-var item3 = document.createElement("li");
-item3.innerText = "Книга 3";
-list.appendChild(item3);
-
-var item4 = document.createElement("li");
-item4.innerText = "Книга 4";
-list.appendChild(item4);
-
-var item5 = document.createElement("li");
-item5.innerText = "Книга 5";
-list.appendChild(item5);*/
-
 // Добавляем заголовок и список в контейнер
 const container = document.getElementById("container");
-/*container.appendChild(heading)
-container.appendChild(list);*/
-
 
 // Создаем header
 const header = document.createElement("div");
@@ -63,3 +82,13 @@ const heading = document.createElement("h1");
 heading.innerText = "Welcome to amazing bookshop!";
 heading.id = 'heading';
 header.appendChild(heading);
+
+// Создаем каталог
+const catalog = document.createElement("div");
+catalog.id = "catalog";
+container.appendChild(catalog);
+
+// Создаем заголовок каталога
+const catalogTitle = document.createElement("h2");
+catalogTitle.innerText = "Book Catalog";
+catalog.appendChild(catalogTitle);
