@@ -7,5 +7,24 @@ html, body {
     
 }
 #container {
-    min-height: 100%;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
 }
+#header {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+}
+#header > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header > h1 {
+    text-align: center;
+}
+
