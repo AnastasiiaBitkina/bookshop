@@ -57,6 +57,7 @@ fetch('books.json') //path to the file with json data
                 linkName.className = "link-name";
                 link.appendChild(linkName);
 
+                //Добавляем модальное окно
 
             }
             console.log(books);
@@ -92,3 +93,4 @@ container.appendChild(catalog);
 const catalogTitle = document.createElement("h2");
 catalogTitle.innerText = "Book Catalog";
 catalog.appendChild(catalogTitle);
+
