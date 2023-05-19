@@ -42,6 +42,7 @@ html, body {
     border-radius: 5px;
     border-color: #003300;
     background-color: #00CC99;
+    margin-bottom: 5%;
 }
 .pic {
     width: 25%;
@@ -53,4 +54,28 @@ html, body {
 }
 #card-right {
     display: block;
+    margin-left: 30px;
 }
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff; 
+    background-color: #006633; 
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+}
+
+.btn:hover {
+        background-color: #990000; 
+        cursor: pointer;
+      }
+      
+.btn:active {
+    background-color: #660000; 
+    cursor: pointer;
+}
+      
