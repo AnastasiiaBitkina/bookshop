@@ -39,10 +39,12 @@ html, body {
 }
 #card-item {
     display: flex;
-    border-radius: 5px;
+    width: 75%;
     border-color: #003300;
     background-color: #00CC99;
     margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
 }
 .pic {
     width: 25%;
