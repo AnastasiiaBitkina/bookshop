@@ -1,11 +1,12 @@
 let bookList = [];
-
+let books = [];
 
 fetch('books.json') //path to the file with json data
         .then(response => {
             return response.json();
         })
-        .then(books => {
+        .then(data => {
+            books = data;
             for (let i = 0; i < books.length; i+=1) {
                 console.log (books[i]);
                 // Создаем карточки
@@ -46,9 +47,9 @@ fetch('books.json') //path to the file with json data
                 btn.appendChild(btnName);
 
                 //Добаляем ссылку на модальное окно
-                const link = document.createElement("a");
-                link.href = "#";
+                const link = document.createElement("button");
                 link.className = "link";
+                link.id = i;
                 cardRight.appendChild(link);
 
                 //Добавляем название ссылки
@@ -57,13 +58,35 @@ fetch('books.json') //path to the file with json data
                 linkName.className = "link-name";
                 link.appendChild(linkName);
 
-                //Добавляем модальное окно
+                link.addEventListener("click", function(event) {
+                    showModal(i);
+                });
 
             }
+        
             console.log(books);
         });
+        
+function drawModal() {
+     // Добавляем модальное окно
+     const modal = document.createElement("div");
+     modal.className = "modal";
+     document.body.appendChild(modal);
+     
+     // Добавляем изображение книги
+       const modalPic = document.createElement("img");
+       modalPic.className = "modal-pic";
+       modal.appendChild(modalPic);
+           
+}
 
+function showModal(i) {
+    const modal = document.querySelector(".modal");
+    const modalPic = modal.querySelector("img");
+    modalPic.src = books[i].imageLink;
 
+    modal.style.display = "block";
+}
 // Добавляем заголовок и список в контейнер
 const container = document.getElementById("container");
 
@@ -94,3 +117,4 @@ const catalogTitle = document.createElement("h2");
 catalogTitle.innerText = "Book Catalog";
 catalog.appendChild(catalogTitle);
 
+drawModal();
