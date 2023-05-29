@@ -143,15 +143,33 @@ heading.innerText = "Welcome to amazing bookshop!";
 heading.id = 'heading';
 header.appendChild(heading);
 
+// Создаем div
+const items = document.createElement("div");
+items.className = "items";
+container.appendChild(items);
+
 // Создаем каталог
 const catalog = document.createElement("div");
 catalog.id = "catalog";
-container.appendChild(catalog);
+items.appendChild(catalog);
 
 // Создаем заголовок каталога
 const catalogTitle = document.createElement("h2");
 catalogTitle.innerText = "Book Catalog";
 catalog.appendChild(catalogTitle);
+
+// Создаем div для корзины
+const basket = document.createElement("div");
+basket.className = "basket";
+items.appendChild(basket);
+
+// Создаем заголовок для корзины
+const basketTitle = document.createElement("h2");
+basketTitle.innerText = "Basket"
+basketTitle.className = "basket-title";
+basket.appendChild(basketTitle);
+
+
 
 // создаем фон
 const overlay = document.createElement("div");

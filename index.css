@@ -103,6 +103,25 @@ html, body {
     }
   }
 
+.items {
+    display: flex;
+}
+.basket {
+    width: 50%;
+    float: right;
+    border-color: #003300;
+    background-color: #00CC99;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    border-radius: 5%;
+}
+.basket-title {
+    text-align: center;
+    color: 	#003300;
+}
+
 .modal {
     display: none;
     position: fixed;
