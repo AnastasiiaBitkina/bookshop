@@ -9,6 +9,8 @@ fetch('books.json') //path to the file with json data
             books = data;
             for (let i = 0; i < books.length; i+=1) {
                 console.log (books[i]);
+
+
                 // Создаем карточки
                 const cardItem = document.createElement("div");
                 cardItem.id = "card-item";
