@@ -39,7 +39,7 @@ html, body {
     text-align: center;
     color: 	#003300;
 }
-#card-item {
+.card-item {
     display: flex;
     width: 75%;
     border-color: #003300;

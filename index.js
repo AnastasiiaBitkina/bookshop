@@ -1,4 +1,4 @@
-let bookList = [];
+let bag = [];
 let books = [];
 
 fetch('books.json') //path to the file with json data
@@ -13,7 +13,7 @@ fetch('books.json') //path to the file with json data
 
                 // Создаем карточки
                 const cardItem = document.createElement("div");
-                cardItem.id = "card-item";
+                cardItem.className = "card-item";
                 catalog.appendChild(cardItem);
                 
                 //Добавляем изображние в карточку
@@ -62,6 +62,10 @@ fetch('books.json') //path to the file with json data
 
                 link.addEventListener("click", function(event) {
                     showModal(i);
+                });
+
+                btn.addEventListener("click", function(event){
+                    addToBag(i);
                 });
 
             }
@@ -121,8 +125,81 @@ function closeModal() {
     overlay.style.display = "none";
 }
 
+function addToBag(i) {
+    bag.push(books[i]);
 
+    function drawBag() {
+        
+            console.log(bag[bag.length-1]);
 
+            // Отрисровать карточки
+
+            // Создаем карточки
+            const cardItem = document.createElement("div");
+            cardItem.className = "card-item";
+            basket.appendChild(cardItem);
+            
+            //Добавляем изображние в карточку
+            const pic = document.createElement("img");
+            pic.className = "pic";
+            pic.src = bag[bag.length-1].imageLink;
+            cardItem.appendChild(pic);
+
+            //Добавляем правый блок карточки
+            const cardRight = document.createElement("div");
+            cardRight.id = "card-right";
+            cardItem.appendChild(cardRight);
+
+            //Добавляем автора книги
+            const author = document.createElement("h3");
+            author.innerText = bag[bag.length-1].author;
+            cardRight.appendChild(author);
+
+            // Добавляем название книги 
+            const title = document.createElement("p");
+            title.innerText = bag[bag.length-1].title;
+            cardRight.appendChild(title);
+
+            // отрисовать крестик
+
+            const cross = document.createElement("button");
+            cross.innerText = "remove";
+            cardRight.appendChild(cross);
+
+            //событие на крестик
+
+            cross.addEventListener("click", function(event) {
+                removeFromBag(event,bag.length-1);
+            })
+    }
+
+    drawBag();
+    sumPrice();
+}
+
+function removeFromBag(event,i) {
+   bag.splice(i,1);
+
+   console.log(event);
+
+   const target = event.target;
+   const closest = target.closest(".card-item");
+
+   console.log(closest);
+
+   basket.removeChild(closest);
+
+   sumPrice();
+}
+
+function sumPrice() {
+    let total = 0;
+    for (let i = 0; i < bag.length; i+=1) {
+        total+=bag[i].price;
+    }
+
+    console.log(total);
+}
 // Добавляем заголовок и список в контейнер
 const container = document.getElementById("container");
 
@@ -165,10 +242,9 @@ items.appendChild(basket);
 
 // Создаем заголовок для корзины
 const basketTitle = document.createElement("h2");
-basketTitle.innerText = "Basket"
+basketTitle.innerText = "Bag";
 basketTitle.className = "basket-title";
 basket.appendChild(basketTitle);
-
 
 
 // создаем фон
@@ -178,7 +254,7 @@ document.body.appendChild(overlay);
 
 // Функция для закрытия модального окна
 
-  // Добавляем обработчик события при клике на фон
+// Добавляем обработчик события при клике на фон
   overlay.addEventListener("click", closeModal);
 
 drawModal();
