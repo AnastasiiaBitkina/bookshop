@@ -72,21 +72,55 @@ function drawModal() {
      const modal = document.createElement("div");
      modal.className = "modal";
      document.body.appendChild(modal);
+
+     // Добавляем автора книги
+     const modalBookAuthor = document.createElement("h3");
+     modalBookAuthor.className = "modal-book-author";
+     modal.appendChild(modalBookAuthor);
+
+     // Добавляем название книги
+     const modalBookName = document.createElement("h4");
+     modalBookName.className = "modal-book-name";
+     modal.appendChild(modalBookName);
+
+     // Добавляем описание книги
+     const modalBookDescription = document.createElement("p");
+     modalBookDescription.className = "modal-book-description";
+     modal.appendChild(modalBookDescription);
      
      // Добавляем изображение книги
-       const modalPic = document.createElement("img");
+       /*const modalPic = document.createElement("img");
        modalPic.className = "modal-pic";
-       modal.appendChild(modalPic);
+       modal.appendChild(modalPic);*/
            
 }
 
 function showModal(i) {
     const modal = document.querySelector(".modal");
-    const modalPic = modal.querySelector("img");
-    modalPic.src = books[i].imageLink;
+
+    const modalBookAuthor = document.querySelector(".modal-book-author");
+    modalBookAuthor.innerText = books[i].author;
+
+    const modalBookName = modal.querySelector(".modal-book-name");
+    modalBookName.innerText = books[i].title;
+
+    const modalBookDescription = modal.querySelector(".modal-book-description");
+    modalBookDescription.innerText = books[i].description;
 
     modal.style.display = "block";
+    overlay.style.display = "block";
 }
+
+function closeModal() {
+    const modal = document.querySelector(".modal");
+    const overlay = document.querySelector(".modal-overlay");
+
+    modal.style.display = "none";
+    overlay.style.display = "none";
+}
+
+
+
 // Добавляем заголовок и список в контейнер
 const container = document.getElementById("container");
 
@@ -116,5 +150,15 @@ container.appendChild(catalog);
 const catalogTitle = document.createElement("h2");
 catalogTitle.innerText = "Book Catalog";
 catalog.appendChild(catalogTitle);
+
+// создаем фон
+const overlay = document.createElement("div");
+overlay.classList.add("modal-overlay");
+document.body.appendChild(overlay);
+
+// Функция для закрытия модального окна
+
+  // Добавляем обработчик события при клике на фон
+  overlay.addEventListener("click", closeModal);
 
 drawModal();
