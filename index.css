@@ -120,7 +120,18 @@ html, body {
     text-align: center;
     color: 	#003300;
 }
-
+.remove-btn {
+    color: black; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+    background-color: #00CC99;
+    border-radius: 5px;
+}
+.remove-btn :hover {
+    color: #990000; 
+    text-decoration: underline; 
+    cursor: pointer;
+  }
 .modal {
     display: none;
     position: fixed;
@@ -134,10 +145,6 @@ html, body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   color: #fff;
 }
-.modal-pic {
-    max-width: 100%;
-    height: auto;
-}
 .modal-overlay {
     display: none;
     position: fixed;
@@ -147,4 +154,16 @@ html, body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9998;
+  }
+.modal-close-btn {
+    color: black; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+    background-color: #00CC99;
+    border-radius: 5px;
+}
+.modal-close-btn :hover {
+    color: #990000; 
+    text-decoration: underline; 
+    cursor: pointer;
   }

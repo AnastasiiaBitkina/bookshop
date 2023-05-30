@@ -50,15 +50,10 @@ fetch('books.json') //path to the file with json data
 
                 //Добаляем ссылку на модальное окно
                 const link = document.createElement("button");
+                link.innerText = "show more";
                 link.className = "link";
                 link.id = i;
                 cardRight.appendChild(link);
-
-                //Добавляем название ссылки
-                const linkName = document.createElement("p");
-                linkName.innerText = "show more"
-                linkName.className = "link-name";
-                link.appendChild(linkName);
 
                 link.addEventListener("click", function(event) {
                     showModal(i);
@@ -93,12 +88,14 @@ function drawModal() {
      const modalBookDescription = document.createElement("p");
      modalBookDescription.className = "modal-book-description";
      modal.appendChild(modalBookDescription);
+
+     // Добавляем кнопку закрытия
+     const closeBtn = document.createElement("button");
+     closeBtn.innerText = "close";
+     closeBtn.className = "modal-close-btn";
+     modal.appendChild(closeBtn);
      
-     // Добавляем изображение книги
-       /*const modalPic = document.createElement("img");
-       modalPic.className = "modal-pic";
-       modal.appendChild(modalPic);*/
-           
+     
 }
 
 function showModal(i) {
@@ -164,6 +161,7 @@ function addToBag(i) {
 
             const cross = document.createElement("button");
             cross.innerText = "remove";
+            cross.className = "remove-btn";
             cardRight.appendChild(cross);
 
             //событие на крестик
@@ -255,6 +253,10 @@ document.body.appendChild(overlay);
 // Функция для закрытия модального окна
 
 // Добавляем обработчик события при клике на фон
-  overlay.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+
+// Добавляем обработчик события при клике на кнопку закрытия
+const closeBtn = document.querySelector(".modal-close-btn");
+/*closeBtn.addEventListener("click", closeModal);*/
 
 drawModal();
