@@ -270,9 +270,16 @@ const totalText = document.createElement("p");
 totalText.className = "total-text";
 basket.appendChild(totalText);
 
+// Cоздаем кнопку для заказа
+
+const orderBtn = document.createElement("button");
+orderBtn.className = "order-btn";
+orderBtn.innerText = "Confirm order";
+basket.appendChild(orderBtn);
 
 
-// создаем фон
+
+// Создаем фон
 const overlay = document.createElement("div");
 overlay.classList.add("modal-overlay");
 document.body.appendChild(overlay);
