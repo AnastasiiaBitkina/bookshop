@@ -204,7 +204,7 @@ function sumPrice() {
     for (let i = 0; i < bag.length; i+=1) {
         total+=bag[i].price;
     }
-
+    totalText.innerText = "Total: " + total;
     console.log(total);
 }
 // Добавляем заголовок и список в контейнер
@@ -247,19 +247,29 @@ const basket = document.createElement("div");
 basket.className = "basket";
 items.appendChild(basket);
 
+// Убираем стаднартное поведение браузера для корзины
 basket.addEventListener ("dragover", function(event){
     event.preventDefault();
 });
 
+// Добавляем обработчик собвтия для корзины
 basket.addEventListener("drop", function(event){
     const id = event.dataTransfer.getData("card-data");
     addToBag(id);
 });
+
 // Создаем заголовок для корзины
 const basketTitle = document.createElement("h2");
 basketTitle.innerText = "Bag";
 basketTitle.className = "basket-title";
 basket.appendChild(basketTitle);
+
+// Созадаем счетчик суммы
+
+const totalText = document.createElement("p");
+totalText.className = "total-text";
+basket.appendChild(totalText);
+
 
 
 // создаем фон

@@ -132,6 +132,12 @@ html, body {
     text-decoration: underline; 
     cursor: pointer;
   }
+
+.total-text{
+    margin-left: 50px;
+    color: #003300;
+    font-weight: bold;
+}
 .modal {
     display: none;
     position: fixed;
