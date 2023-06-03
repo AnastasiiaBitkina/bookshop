@@ -14,6 +14,8 @@ fetch('books.json') //path to the file with json data
                 // Создаем карточки
                 const cardItem = document.createElement("div");
                 cardItem.className = "card-item";
+                cardItem.id = i;
+                cardItem.draggable = true;
                 catalog.appendChild(cardItem);
                 
                 //Добавляем изображние в карточку
@@ -63,6 +65,15 @@ fetch('books.json') //path to the file with json data
                     addToBag(i);
                 });
 
+                cardItem.addEventListener("dragstart", function(event){
+                    
+                    const id = event.target.id;
+
+                    event.dataTransfer.setData("card-data", id);
+                    event.dataTransfer.getData("card-data");
+
+                });
+
             }
         
             console.log(books);
@@ -93,9 +104,7 @@ function drawModal() {
      const closeBtn = document.createElement("button");
      closeBtn.innerText = "close";
      closeBtn.className = "modal-close-btn";
-     modal.appendChild(closeBtn);
-     
-     
+     modal.appendChild(closeBtn);   
 }
 
 function showModal(i) {
@@ -238,6 +247,14 @@ const basket = document.createElement("div");
 basket.className = "basket";
 items.appendChild(basket);
 
+basket.addEventListener ("dragover", function(event){
+    event.preventDefault();
+});
+
+basket.addEventListener("drop", function(event){
+    const id = event.dataTransfer.getData("card-data");
+    addToBag(id);
+});
 // Создаем заголовок для корзины
 const basketTitle = document.createElement("h2");
 basketTitle.innerText = "Bag";
@@ -255,8 +272,8 @@ document.body.appendChild(overlay);
 // Добавляем обработчик события при клике на фон
 overlay.addEventListener("click", closeModal);
 
+drawModal();
+
 // Добавляем обработчик события при клике на кнопку закрытия
 const closeBtn = document.querySelector(".modal-close-btn");
-/*closeBtn.addEventListener("click", closeModal);*/
-
-drawModal();
+closeBtn.addEventListener("click", closeModal);
