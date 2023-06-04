@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    background: linear-gradient(to bottom, #669999 0%, #339966 100%);
+    background-color: #669999;;
 }
 .title {
     color: black;
@@ -197,3 +197,25 @@ cursor: pointer;
     text-decoration: underline; 
     cursor: pointer;
   }
+
+  .order-form-container {
+    display: none;
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  }
+  #orderForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .submit-btn {
+    margin-top: 20px;
+  }
+ 

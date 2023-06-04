@@ -271,13 +271,10 @@ totalText.className = "total-text";
 basket.appendChild(totalText);
 
 // Cоздаем кнопку для заказа
-
 const orderBtn = document.createElement("button");
 orderBtn.className = "order-btn";
 orderBtn.innerText = "Confirm order";
 basket.appendChild(orderBtn);
-
-
 
 // Создаем фон
 const overlay = document.createElement("div");
@@ -294,3 +291,112 @@ drawModal();
 // Добавляем обработчик события при клике на кнопку закрытия
 const closeBtn = document.querySelector(".modal-close-btn");
 closeBtn.addEventListener("click", closeModal);
+
+// Создаем форму
+function drawForm() {
+    const orderFormContainer = document.createElement("div");
+    orderFormContainer.className = "order-form-container";
+    document.body.appendChild(orderFormContainer);
+    // Создаем форму
+    const form = document.createElement("form");
+    form.id = "orderForm";
+    orderFormContainer.appendChild(form);
+
+    // Создаем и добавляем элементы формы
+    const nameLabel = document.createElement("label");
+    nameLabel.textContent = "Name:";
+    form.appendChild(nameLabel);
+
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.required = true;
+    form.appendChild(nameInput);
+
+    const emailLabel = document.createElement("label");
+    emailLabel.textContent = "Email:";
+    form.appendChild(emailLabel);
+
+    const emailInput = document.createElement("input");
+    emailInput.type = "email";
+    emailInput.required = true;
+    form.appendChild(emailInput);
+
+    const addressLabel = document.createElement("label");
+    addressLabel.textContent = "Address:";
+    form.appendChild(addressLabel);
+
+    const addressInput = document.createElement("input");
+    addressInput.type = "text";
+    addressInput.required = true;
+    form.appendChild(addressInput);
+
+    const phoneLabel = document.createElement("label");
+    phoneLabel.textContent = "Phone:";
+    form.appendChild(phoneLabel);
+
+    const phoneInput = document.createElement("input");
+    phoneInput.type = "text";
+    phoneInput.required = true;
+    form.appendChild(phoneInput);
+
+    const submitBtn = document.createElement("input");
+    submitBtn.type = "submit";
+    submitBtn.value = "Order";
+    submitBtn.className = "submit-btn"
+    form.appendChild(submitBtn);
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Отменяем отправку формы
+  
+        // Получаем значения полей формы
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const address = addressInput.value;
+        const phone = phoneInput.value;
+  
+        // Отправляем данные на сервер 
+        fetch("/submit-order", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            address: address,
+            phone: phone
+          })
+        })
+        .then(function(response) {
+          if (response.ok) {
+            alert("Your order has been successfully sent!");
+            
+          } else {
+            alert("Error sending order. Please try again.");
+          }
+        })
+        .catch(function(error) {
+          alert("Error submitting order: " + error.message);
+        });
+      });
+      overlay.style.display = "block";
+      orderFormContainer.style.display = "block";
+};
+
+// Добавляем обарботчик события кнопку заказа 
+
+orderBtn.addEventListener("click", function () {
+    drawForm();
+});
+function closeForm() {
+    const orderFormContainer = document.querySelector(".order-form-container");
+    const overlay = document.querySelector(".modal-overlay");
+
+    orderFormContainer.style.display = "none";
+    overlay.style.display = "none";
+}
+
+// Добавляем обработчик события на фон 
+overlay.addEventListener("click", function (){
+    closeForm ();
+});
