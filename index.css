@@ -15,6 +15,7 @@ html, body {
     min-height: 100vh;
     position: relative;
 }
+/* header*/
 #header {
     display: block;
     margin-left: auto;
@@ -31,6 +32,7 @@ html, body {
     text-align: center;
     color: 	#003300;
 }
+/*catalog*/
 #catalog {
     display: block;
     margin-left: auto;
@@ -42,9 +44,11 @@ html, body {
     text-align: center;
     color: 	#003300;
 }
+/*cards*/
 .card-item {
     display: flex;
     width: 75%;
+    min-width: 300px;
     border-color: #003300;
     background-color: #00CC99;
     margin-bottom: 5%;
@@ -77,6 +81,8 @@ html, body {
     border-radius: 5px;
     transition: background-color 0.3s ease; 
     margin-right: 50px;
+    margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 .btn:hover {
@@ -95,6 +101,7 @@ html, body {
     transition: color 0.3s ease; 
     background-color: #00CC99;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 .link :hover {
     color: #990000; 
@@ -238,6 +245,8 @@ cursor: pointer;
     background: #669999;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     pointer-events: none;
+    margin: 0;
+    padding: 0;
   }
   .circles li {
     position: relative;
