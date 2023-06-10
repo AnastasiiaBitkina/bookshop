@@ -182,6 +182,8 @@ function addToBag(i) {
 
     drawBag();
     sumPrice();
+  
+    orderBtn.disabled = false;
 }
 
 function removeFromBag(event,i) {
@@ -197,6 +199,10 @@ function removeFromBag(event,i) {
    basket.removeChild(closest);
 
    sumPrice();
+
+   if (bag.length == 0) {
+    orderBtn.disabled = true;
+   }
 }
 
 function sumPrice() {
@@ -252,10 +258,11 @@ basket.addEventListener ("dragover", function(event){
     event.preventDefault();
 });
 
-// Добавляем обработчик собвтия для корзины
+// Добавляем обработчик события для корзины
 basket.addEventListener("drop", function(event){
     const id = event.dataTransfer.getData("card-data");
     addToBag(id);
+    console.log("drop");
 });
 
 // Создаем заголовок для корзины
@@ -274,6 +281,7 @@ basket.appendChild(totalText);
 const orderBtn = document.createElement("button");
 orderBtn.className = "order-btn";
 orderBtn.innerText = "Confirm order";
+orderBtn.disabled = true;
 basket.appendChild(orderBtn);
 
 // Создаем фон
@@ -353,40 +361,25 @@ function drawForm() {
         const email = emailInput.value;
         const address = addressInput.value;
         const phone = phoneInput.value;
-  
-        // Отправляем данные на сервер 
-        fetch("/submit-order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            address: address,
-            phone: phone
-          })
-        })
-        .then(function(response) {
-          if (response.ok) {
-            alert("Your order has been successfully sent!");
+        
+        alert("Your order has been successfully sent!");
             
-          } else {
-            alert("Error sending order. Please try again.");
-          }
-        })
-        .catch(function(error) {
-          alert("Error submitting order: " + error.message);
-        });
-      });
-      overlay.style.display = "block";
-      orderFormContainer.style.display = "block";
+    });
+      
 };
 
+// Функция для показа формы
+
+function showForm() {
+    const orderFormContainer = document.querySelector(".order-form-container");
+
+    overlay.style.display = "block";
+    orderFormContainer.style.display = "block";
+}
 // Добавляем обарботчик события кнопку заказа 
 
 orderBtn.addEventListener("click", function () {
-    drawForm();
+    showForm();
 });
 function closeForm() {
     const orderFormContainer = document.querySelector(".order-form-container");
@@ -394,9 +387,12 @@ function closeForm() {
 
     orderFormContainer.style.display = "none";
     overlay.style.display = "none";
+    console.log(orderFormContainer);
 }
 
 // Добавляем обработчик события на фон 
 overlay.addEventListener("click", function (){
     closeForm ();
 });
+
+drawForm();
